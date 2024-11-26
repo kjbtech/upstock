@@ -10,7 +10,7 @@ interface ResultsSectionProps {
 export function ResultsSection({ data, isLoading }: ResultsSectionProps) {
   return (
     <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Extracted Data</h2>
+      <h2 className="text-lg font-medium text-gray-900 mb-4">Fournitures</h2>
       <DataTable data={data} isLoading={isLoading} />
     </div>
   );

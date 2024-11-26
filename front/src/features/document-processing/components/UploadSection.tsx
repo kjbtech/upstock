@@ -21,7 +21,7 @@ export function UploadSection({
 }: UploadSectionProps) {
   return (
     <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Upload Files</h2>
+      <h2 className="text-lg font-medium text-gray-900 mb-4">Fichiers à traiter</h2>
       <FileUpload
         onFilesSelected={onFilesSelected}
         acceptedFiles={files}
@@ -33,7 +33,7 @@ export function UploadSection({
             <div className="space-y-2">
               <ProgressBar progress={uploadProgress} />
               <p className="text-sm text-gray-500 text-center">
-                Uploading... {uploadProgress}%
+                Traitement en cours... {uploadProgress}%
               </p>
             </div>
           )}
@@ -46,7 +46,7 @@ export function UploadSection({
                 : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >
-            {isUploading ? 'Uploading...' : 'Process Files'}
+            {isUploading ? 'Traitement en cours...' : 'Demander le traitement'}
           </button>
         </div>
       )}
