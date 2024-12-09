@@ -11,13 +11,14 @@ public class CloudFlareR2
 {
     private readonly IAmazonS3 _s3Client;
     private readonly string _bucketName = "upstock";
+    private static string _publicDomain = "https://r2.kjbconseil.dev";
 
     public CloudFlareR2(IAmazonS3 s3Client)
     {
         _s3Client = s3Client;
     }
 
-    public async Task AddAsync(
+    public async Task<string> AddAsync(
         FileToUpload fileToUpload,
         CancellationToken cancellationToken)
     {
@@ -35,7 +36,15 @@ public class CloudFlareR2
 
             var transferUtility = new TransferUtility(_s3Client);
             await transferUtility.UploadAsync(uploadRequest, cancellationToken);
+
+            return key;
         }
+        return string.Empty;
+    }
+
+    public static Uri GetPublicUri(string key)
+    {
+        return new Uri(new Uri(_publicDomain), key);
     }
 
     public record FileToUpload(Stream FileStream, string FileName, string ContentType);

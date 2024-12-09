@@ -1,5 +1,5 @@
+using UpStock.Infrastructure;
 using UpStock.WebApi.Files;
-using UpStock.WebApi.Items;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Initialize(builder.Configuration.GetConnectionString("Main"), builder.Environment);
 builder.Services.AddFiles(builder.Configuration);
-builder.Services.AddItems();
 
 var app = builder.Build();
 

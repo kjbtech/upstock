@@ -7,7 +7,10 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddFiles(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<CloudFlareR2>();
+        services.AddScoped<GetItemsFromFile>();
         services.AddDefaultAWSOptions(configuration.GetAWSOptions());
-        return services.AddAWSService<IAmazonS3>();
+        services.AddAWSService<IAmazonS3>();
+
+        return services;
     }
 }

@@ -21,7 +21,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AWS_ACCESS_KEY_ID": "35515d97e81865e8764694b841bfdf65",
         "AWS_SECRET_ACCESS_KEY": "751082257da66623b1185c4a1fc279ee9ca6e58b524a7991db465fdebf51feb2",
-        "AWS_ENDPOINT_URL": "https://f10af60d8b46e6c0d6743cd8868e7273.r2.cloudflarestorage.com"
+        "AWS_ENDPOINT_URL": "https://f10af60d8b46e6c0d6743cd8868e7273.r2.cloudflarestorage.com",
+        "ConnectionStrings__Main": "Host=localhost;Port=5010;Database=upstock;Username=postgres;Password=password"
       }
     }
   }
