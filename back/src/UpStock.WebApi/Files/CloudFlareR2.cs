@@ -24,7 +24,7 @@ public class CloudFlareR2
     {
         if (fileToUpload.FileStream.Length > 0)
         {
-            var key = $"todo/{Guid.NewGuid()}_{fileToUpload.FileName}"; // Unique key for the file
+            var key = $"{Guid.NewGuid()}_{fileToUpload.FileName}"; // Unique key for the file
             var uploadRequest = new TransferUtilityUploadRequest
             {
                 InputStream = fileToUpload.FileStream,
