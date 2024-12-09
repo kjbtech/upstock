@@ -1,0 +1,6 @@
+@UpStock.WebApi_HostAddress = http://localhost:5098
+
+GET {{UpStock.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
