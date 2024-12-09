@@ -32,6 +32,10 @@ public class GetItemsFromFile
         {
             var newItem = new ExtractedFromFile(
                 Guid.NewGuid().ToString(),
+                new FinancialDocument(
+                    response.Document.Inference.Prediction.SupplierName.Value,
+                    response.Document.Inference.Prediction.DocumentNumber.Value,
+                    response.Document.Inference.Prediction.Date.Value),
                 lineItem.Description,
                 lineItem.ProductCode,
                 lineItem.Quantity,

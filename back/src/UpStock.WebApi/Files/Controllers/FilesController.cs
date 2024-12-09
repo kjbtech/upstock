@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using UpStock.Domain.Files;
 
 namespace UpStock.WebApi.Files.Controllers;
 

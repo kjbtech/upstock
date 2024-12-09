@@ -4,6 +4,7 @@ namespace UpStock.Domain.Items;
 
 public class Item : AggregateBase
 {
+    public FinancialDocument From { get; private set; }
     public string? Description { get; private set; }
 
     public string? ProductCode { get; private set; }
@@ -18,6 +19,7 @@ public class Item : AggregateBase
     protected void Apply(ExtractedFromFile extractedFromFile)
     {
         Id = extractedFromFile.ItemId;
+        From = extractedFromFile.From;
         Description = extractedFromFile.Description;
         ProductCode = extractedFromFile.ProductCode;
         Quantity = extractedFromFile.Quantity;
@@ -27,6 +29,7 @@ public class Item : AggregateBase
 
 public record ExtractedFromFile(
     string ItemId,
+    FinancialDocument From,
     string? Description,
     string? ProductCode,
     double? Quantity,
