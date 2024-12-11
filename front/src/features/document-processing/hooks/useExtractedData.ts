@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ExtractedData } from '../domain/ExtractedData';
 import { DocumentApiRepository } from '../infrastructure/DocumentApiRepository';
 import { useAlert } from '@/shared/hooks/useAlert';
@@ -8,7 +8,7 @@ export function useExtractedData() {
   const [isLoading, setIsLoading] = useState(true);
   const { showAlert } = useAlert();
 
-  const documentRepository = new DocumentApiRepository();
+  const documentRepository = useMemo(() => new DocumentApiRepository(), []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ export function useExtractedData() {
     };
 
     fetchData();
-  }, [showAlert]);
+  }, [showAlert, documentRepository]);
 
   return { data, isLoading };
 }
