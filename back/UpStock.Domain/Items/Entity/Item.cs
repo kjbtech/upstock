@@ -1,6 +1,6 @@
 ﻿using UpStock.Kernel;
 
-namespace UpStock.Domain.Items;
+namespace UpStock.Domain.Items.Entity;
 
 public class Item : AggregateBase
 {

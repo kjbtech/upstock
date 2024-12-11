@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Marten;
 using Microsoft.Extensions.Hosting;
 using UpStock.Domain;
+using UpStock.Kernel;
+using UpStock.Domain.Items;
+using UpStock.Infrastructure.Items;
 
 namespace UpStock.Infrastructure;
 
@@ -40,9 +43,20 @@ public static class ServiceCollectionExtensions
             }
             options.UseSystemTextJsonForSerialization();
             options.Events.StreamIdentity = Marten.Events.StreamIdentity.AsString;
+
+            options.Projections.Add<ItemSummaryProjection>(Marten.Events.Projections.ProjectionLifecycle.Inline);
         });
 
         services.TryAddScoped<IUpstockRepository, MartenRepository>();
+
+        services.AddItems();
+
+        return services;
+    }
+
+    private static IServiceCollection AddItems(this IServiceCollection services)
+    {
+        services.TryAddScoped(typeof(IQueryHandler<ListItems, ItemsList>), typeof(ListItemsHandler));
 
         return services;
     }

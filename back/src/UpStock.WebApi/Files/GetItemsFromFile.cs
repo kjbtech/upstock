@@ -1,9 +1,9 @@
 ﻿using Mindee.Input;
 using Mindee.Product.FinancialDocument;
 using Mindee;
-using UpStock.Domain.Items;
 using UpStock.Domain;
 using UpStock.Domain.Files;
+using UpStock.Domain.Items.Entity;
 
 namespace UpStock.WebApi.Files;
 
