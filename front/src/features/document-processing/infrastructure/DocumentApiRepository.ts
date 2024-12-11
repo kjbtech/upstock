@@ -25,7 +25,7 @@ export class DocumentApiRepository implements DocumentRepository {
       });
 
       const response = await this.api.post<{ documents: Document[] }>(
-        '/documents/upload',
+        '/files',
         formData
       );
 
@@ -38,7 +38,7 @@ export class DocumentApiRepository implements DocumentRepository {
   async getExtractedData(documentIds: string[]): Promise<Result<ExtractedDataCollection>> {
     try {
       const response = await this.api.get<ExtractedDataCollection>(
-        '/documents/extracted-data',
+        '/items',
         {
           params: { documentIds: documentIds.join(',') },
         }
