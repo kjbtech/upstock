@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, File, X } from 'lucide-react';
 import { clsx } from 'clsx';
-import { translations } from '@/shared/i18n/translations';
 
 interface FileUploadProps {
   onFilesSelected: (files: File[]) => void;
@@ -35,16 +34,16 @@ export function FileUpload({ onFilesSelected, acceptedFiles, onRemoveFile }: Fil
         <input {...getInputProps()} />
         <Upload className="mx-auto h-12 w-12 text-gray-400" />
         <p className="mt-2 text-sm text-gray-600">
-          {translations.upload.dropzoneText}
+          Drag & drop PDF or image files here, or click to select files
         </p>
         <p className="text-xs text-gray-500 mt-1">
-          {translations.upload.supportedFormats}
+          Supported formats: PDF, PNG, JPG, JPEG
         </p>
       </div>
 
       {acceptedFiles.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-sm font-medium text-gray-700">{translations.upload.selectedFiles}</h3>
+          <h3 className="text-sm font-medium text-gray-700">Selected files:</h3>
           <ul className="divide-y divide-gray-200 border rounded-lg">
             {acceptedFiles.map((file, index) => (
               <li key={index} className="flex items-center justify-between p-3">

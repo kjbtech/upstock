@@ -25,10 +25,10 @@ export function DocumentProcessingFeature() {
         <div className="text-center mb-12">
           <Upload className="mx-auto h-12 w-12 text-blue-600" />
           <h1 className="mt-4 text-3xl font-bold text-gray-900">
-            UpStock
+          UpStock
           </h1>
           <p className="mt-2 text-gray-600">
-            Ajouter vos factures fournisseurs pour extraire automatiquement vos données de stocks !  
+            Upload PDF documents and images to extract and analyze data
           </p>
         </div>
 

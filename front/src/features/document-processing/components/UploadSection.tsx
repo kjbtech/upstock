@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileUpload } from '@/shared/components/FileUpload';
 import { ProgressBar } from '@/shared/components/ProgressBar';
+import { translations } from '@/shared/i18n/translations';
 
 interface UploadSectionProps {
   files: File[];
@@ -21,7 +22,7 @@ export function UploadSection({
 }: UploadSectionProps) {
   return (
     <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Fichiers à traiter</h2>
+      <h2 className="text-lg font-medium text-gray-900 mb-4">{translations.upload.title}</h2>
       <FileUpload
         onFilesSelected={onFilesSelected}
         acceptedFiles={files}
@@ -33,7 +34,7 @@ export function UploadSection({
             <div className="space-y-2">
               <ProgressBar progress={uploadProgress} />
               <p className="text-sm text-gray-500 text-center">
-                Traitement en cours... {uploadProgress}%
+                {translations.upload.uploading} {uploadProgress}%
               </p>
             </div>
           )}
@@ -46,7 +47,7 @@ export function UploadSection({
                 : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >
-            {isUploading ? 'Traitement en cours...' : 'Demander le traitement'}
+            {isUploading ? translations.upload.uploading : translations.upload.processFiles}
           </button>
         </div>
       )}

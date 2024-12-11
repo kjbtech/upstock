@@ -1,5 +1,4 @@
 import React from 'react';
-import { translations } from '@/shared/i18n/translations';
 
 interface DataTableProps {
   data: any[];
@@ -10,9 +9,7 @@ export function DataTable({ data, isLoading }: DataTableProps) {
   if (isLoading) {
     return (
       <div className="w-full h-64 flex items-center justify-center">
-        <div className="animate-pulse text-gray-500">
-          {translations.extractedData.loading}
-        </div>
+        <div className="animate-pulse text-gray-500">Loading data...</div>
       </div>
     );
   }
@@ -20,11 +17,12 @@ export function DataTable({ data, isLoading }: DataTableProps) {
   if (data.length === 0) {
     return (
       <div className="w-full h-64 flex items-center justify-center">
-        <p className="text-gray-500">{translations.extractedData.noData}</p>
+        <p className="text-gray-500">No data available yet. Upload files to see extracted data.</p>
       </div>
     );
   }
 
+  // Dynamically generate headers from the first data item
   const headers = Object.keys(data[0]);
 
   return (

@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { Document } from '../domain/Document';
-import { ExtractedData } from '../domain/ExtractedData';
 import { DocumentApiRepository } from '../infrastructure/DocumentApiRepository';
 import { useAlert } from '@/shared/hooks/useAlert';
 
@@ -8,7 +7,6 @@ export function useDocumentUpload() {
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [extractedData, setExtractedData] = useState<ExtractedData[]>([]);
   const { showAlert } = useAlert();
 
   const documentRepository = new DocumentApiRepository();
@@ -22,7 +20,7 @@ export function useDocumentUpload() {
   }, []);
 
   const handleUpload = async () => {
-    if (files.length === 0) return;
+    if (files.length === 0) return { success: false };
 
     setIsUploading(true);
     setUploadProgress(0);
@@ -34,20 +32,12 @@ export function useDocumentUpload() {
         throw new Error(uploadResult.error || 'Upload failed');
       }
 
-      const documents = uploadResult.getValue();
-      const extractedDataResult = await documentRepository.getExtractedData(
-        documents.map(doc => doc.id)
-      );
-
-      if (extractedDataResult.isFailure) {
-        throw new Error(extractedDataResult.error || 'Failed to get extracted data');
-      }
-
-      setExtractedData(extractedDataResult.getValue().items);
       setFiles([]);
       showAlert('success', 'Files uploaded and processed successfully!');
+      return { success: true };
     } catch (error) {
       showAlert('error', error instanceof Error ? error.message : 'An error occurred');
+      return { success: false };
     } finally {
       setIsUploading(false);
       setUploadProgress(0);
@@ -58,7 +48,6 @@ export function useDocumentUpload() {
     files,
     isUploading,
     uploadProgress,
-    extractedData,
     handleFilesSelected,
     handleRemoveFile,
     handleUpload,
