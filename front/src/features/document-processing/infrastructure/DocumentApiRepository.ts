@@ -50,15 +50,6 @@ export class DocumentApiRepository implements DocumentRepository {
     }
   }
 
-  async getDocumentStatus(documentId: string): Promise<Result<Document>> {
-    try {
-      const response = await this.api.get<Document>(`/documents/${documentId}/status`);
-      return Result.ok(response.data);
-    } catch (error) {
-      return Result.fail(this.handleError(error));
-    }
-  }
-
   private handleError(error: unknown): string {
     if (axios.isAxiosError(error)) {
       return error.response?.data?.message || 'An error occurred while processing your request';
